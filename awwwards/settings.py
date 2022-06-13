@@ -155,7 +155,8 @@ CLOUDINARY_STORAGE = {
 
 }
 
-LOGOUT_REDIRECT_URL = "index" 
+LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = 'index'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 REST_FRAMEWORK = {
