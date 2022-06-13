@@ -39,7 +39,7 @@
 {% for project in projects %}
 <div class="w3-col l3 m6 s12">
   <a href="{% url 'details' pk=project.id %}">
-  <img class="w3-round w3-image" src="{{project.project_cover.url}}">
+  <img style="max-height:50vh;" class="w3-round w3-image" src="{{project.project_cover.url}}">
   </a>
   <p> <span>{{project.title}}</span> <span class="color w3-right">By:{{project.profile.user}}</span> </p>
 
