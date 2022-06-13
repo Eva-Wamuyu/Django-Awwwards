@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"> 
+  {% comment %} {% load tailwind_tags %} {% endcomment %}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+  {% load static %}
+  
+  {% block styles %}
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  {% endblock styles %}
+  <script src="https://kit.fontawesome.com/9d6964b900.js" crossorigin="anonymous"></script>
+
+  {% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
+  
+  <link rel="shortcut icon" href="{% static 'wamyu.png'%}" type="image/x-icon"> 
+  
+  
+
+ <link rel="stylesheet" href="{% static 'styles.css'%}"> 
+
+
+ 
+
+
+
+  {% if title %}
+  <title>{{title}}</title>
+  {% else %}
+  <title> Ev|Awwwards</title>
+  {% endif %}
+
+  
+  
+</head>
+<body>
+{% block nav %}
+<nav class="sticky">
+<div class="w3-bar padding-top">
+  <a href="/" class="w3-bar-item w3-button w3-hover-none"> <i class="fa-solid fa-w"></i> <i class="fa-solid fa-a"></i> </a>
+  <a href="{% url 'home' %}" class="w3-bar-item btn-hover w3-hover-none w3-button">Projects</a>
+  <a href="{% url 'members' %}" class="w3-bar-item w3-button w3-hover-none btn-hover">Members</a>
+  <a href="{% url 'documentation'%}" class="w3-bar-item w3-button w3-hover-none btn-hover">API Docs</a>
+    <form method="get" action="{% url 'search' %}" name="search" class="search-form">
+      <input name="search" class="border-radius" type="text" placeholder="Search...">
+      <button class="border-radius btn">Search</button>
+    </form>
+  
+
+ {% if user.is_authenticated %}
+  
+   <div class="dropdown">
+     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hover-none btn-hover dropbtn"> <i class="fa fa-solid fa-user" aria-hidden="true"></i> </a>
+       <div class="dropdown-content">
+        <a href="{% url 'profile' username=user.username %}">Profile</a> 
+        <a href="{% url 'settings'%}">Settings </a> 
+         <a href="{% url 'logsout'%}">Log Out </a> 
+       </div>
+   </div>
+   {% block small %}
+  <a onclick="document.getElementById('form-modal').style.display='block'"  class="w3-bar-item w3-button  w3-right w3-hover-none btn-hover">Add Project</a>
+  {% endblock small %}
+  {% else %}
+ 
+  <div class="logs">
+  <a href="{% url 'signup'%}" class="w3-right btn w3-btn w3-hover-none hover-btn border-radius">Sign Up</a>
+  <a href="{% url 'logsin'%}" class="w3-btn w3-right border-radius w3-hover-none hover-btn btn-2 w3-border">Log In </a>
+  </div>
+  {% endif %}
+</div>
+
+</nav>
+{% endblock nav %}
+  
+
+
+  {% block content %}
+  
+  
+  
+  
+  {% endblock %}
+
+
+  
+</body>
+</html>
