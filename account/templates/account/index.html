@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<div id="form-modal" class="w3-modal w3-animate-top flexible-width form-modal place-center w3-border">
+  <button class="" onclick="document.getElementById('form-modal').style.display='none'" type="button">Close</button>
+  <h2> Add A Project</h2>
+  <form action="{% url 'home' %}" enctype="multipart/form-data" method="post" class="w3-modal-content">
+    <h3> <small>Add A project title,description,link and landing page </small>  </h3>
+    {% csrf_token %}
+    {% for forms in form %}
+   {{forms.label}}
+   <br>
+   {{forms}}
+   <br>
+   {% endfor %}
+  <div>
+    <button class="">
+      Add
+    </button>
+    <button class="w3-right" onclick="document.getElementById('form-modal').style.display='none'" type="button">Close</button>
+  </div>
+  </form>
+
+</div>
+
+
+
+
+
+
+
+
+<div>
+{% if projects %}
+<div class="w3-row-padding">
+{% for project in projects %}
+<div class="w3-col l3 m6 s12">
+  <a href="{% url 'details' pk=project.id %}">
+  <img class="w3-round w3-image" src="{{project.project_cover.url}}">
+  </a>
+  <p> <span>{{project.title}}</span> <span class="color w3-right">By:{{project.profile.user}}</span> </p>
+
+</div>
+{% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% else %}
+{% if msg %}
+{{msg}}
+{% else %}
+<div>
+  <p>
+    Projects Coming Up
+  </p>
+</div>
+{% endif %}
+{% endif %}
+</div>
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+{% endblock content %}

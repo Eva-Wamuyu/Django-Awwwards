@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block small %}
+{% endblock %}
+
+{% block content %}
+
+<div class="w3-container w3-row">
+<div class="w3-col w3-col s12 l6 m6">
+<h2>{{profile.user}}</h2>
+<img class="w3-image" src="{{profile.profile_pic.url}}" alt="{{profile.user}}">
+<br>
+Joined:{{profile.user.date_joined|date:"Y-m-d"}}
+<br>
+{% if profile.user_bio %}
+Bio{{profile.user_bio}}
+{% endif %}
+</div>
+<div class="w3-col w3-col s12 m6 l6">
+<h2> Projects </h2>
+<ul class="projects">
+  {% for project in projects %}
+  <li> <a href="{% url 'details' pk=project.id %}">{{project.title}}</li>
+
+</ul>
+{% endfor %}
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% endblock nav %}
+
+{% block content %}
+<div class="w3-container bg-img place-center">
+  <div class="big-data w3-round">
+    <h2>Create an account</h2>
+    <p>Already have an account? <a href={% url 'logsin' %}>Log In</a> </p>
+    <p>
+      <br>
+      <small>
+        Username:150 characters or fewer. Letters, digits and @/./+/-/_ only
+      </small> <br />
+      <small>
+        Your password must be strongand at least 8 characters.
+      </small>
+    </p>
+    
+    <form class="data" method="post">
+      {% csrf_token %}
+         <p>
+           <small class="w3-pink">
+                  {{errors}}
+           </small>
+         </p>
+      
+      {% for input_label in form %}
+      {{input_label.label}}*
+      <br>
+      {{input_label}}
+      <br>
+      {% endfor %}
+      <button class="btn w3-margin-top">Sign Up</button>
+    </form>
+      
+  </div>
+  </div>
+
+
+
+
+
+
+
+{% endblock content %}

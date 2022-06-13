@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block small %}
+{% endblock %}
+{% block content %}
+
+<h2 class="w3-center"> Awwwarders </h2>
+<div class="w3-container w3-row">
+
+  {% for profile in profiles %}
+<div class="w3-col s6 l3 m6 w3-center">
+  <a href="{% url 'profile' username=profile.user %}">
+    <img style="max-width: 80%" class="w3-round" src="{{ profile.profile_pic.url }}" alt="{{profile.user.username}}">
+    <h3>{{profile.user}} </h3>
+   </a>
+</div>
+{% endfor %}
+
+
+</div>
+{% endblock content %}
